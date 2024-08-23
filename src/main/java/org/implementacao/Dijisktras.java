@@ -1,8 +1,7 @@
-import org.implementacao.Grafos;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+package org.implementacao;
 
-public class BellmanfordTest {
+public class Dijisktras {
+
     static Grafos grafos5verticespositive(){
         // grafo com 5 arestas
         // representação do grafo:
@@ -41,18 +40,18 @@ public class BellmanfordTest {
         return  grafos;
     }
 
-    static Grafos grafos5verticesnegativecycle(){
+    static Grafos grafos5verticesnegative(){
         // grafo com 5 arestas
         // representação do grafo:
         Grafos grafos=new Grafos(6);
 
         // ligação da aresta do vertice 0
-        grafos.insertedge(0,1,-4);
+        grafos.insertedge(0,1,4);
         grafos.insertedge(0,2,-2);
 
         //ligação das aresta  do vetices 1
         grafos.insertedge(1,0,4);
-        grafos.insertedge(1,2,-3);
+        grafos.insertedge(1,2,1);
         grafos.insertedge(1,3,5);
 
         // ligação da aresta do vertice 2
@@ -76,28 +75,19 @@ public class BellmanfordTest {
         grafos.insertedge(5,3,6);
         grafos.insertedge(5,4,2);
 
-        return grafos;
+        return  grafos;
     }
 
-    @Test
-    void bellmanfordpositive(){// testa se o caminho minimo de disjisktras
-        // verifica se o resultado do bellman-ford é igual dijikstra para 0 e 1 como inicial
-        Grafos grafos=grafos5verticespositive();
-        Assertions.assertArrayEquals(grafos.dijisktra(0),
-                grafos.bellmanford(0));
-        Assertions.assertArrayEquals(grafos.dijisktra(1),
-                grafos.bellmanford(1));
-        Assertions.assertArrayEquals(grafos.dijisktra(2),
-                grafos.bellmanford(2));
-    }
+    public static void main(String[] args) {
 
-    @Test
-    void detectioncyclenegative(){// testa caso exista ciclos negativcs
-        // -1 não pode ser considerada uma aresta negativa
-        // valor utilizado para determinar se uma aresta existe ou não
-        Grafos grafos=grafos5verticesnegativecycle();
-        int[] pred={-1,-1,-1,-1,-1,-1};
-        Assertions.assertArrayEquals(grafos.bellmanford(0),pred);
-    }
+        Grafos grafos=grafos5verticespositive();// cria o grafo para aplicar o algortimo de dijisktra
+        System.out.println("Resultado do caminho minimo de dijisktra\n");
+        int [] pred=grafos.dijisktra(0);
 
+        System.out.println("\n grafo com aresta negativa dijisktra \n");
+        Grafos grafos1=grafos5verticesnegative();
+        int[] predbellmanford=grafos1.dijisktra(0);
+
+
+    }
 }

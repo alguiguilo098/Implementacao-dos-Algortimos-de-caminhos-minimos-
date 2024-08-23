@@ -1,4 +1,4 @@
-package org.example;
+package org.implementacao;
 
 import java.util.*;
 /*
@@ -75,7 +75,7 @@ public class Grafos {
     private boolean allpositiveedge(){// verifica se todos os vertices são positivos
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j <matriz[i].length; j++) {
-                if (matriz[i][j]<0){
+                if (matriz[i][j]<0 && matriz[i][j]!=-1){
                     return false;
                 }
             }
@@ -129,8 +129,11 @@ public class Grafos {
                         pred[j] = -1;
                     }
         }
+        int[] prednegative_1={-1,-1,-1,-1,-1,-1};
+        if(!Arrays.equals(pred,prednegative_1)){
+            imprimirPredecessores(pred,pred.length-1);
+        }
 
-        imprimirPredecessores(pred,pred.length-1);
         return pred;
     }
     public int[] dijisktra(int posvertice){
@@ -138,18 +141,22 @@ public class Grafos {
         int[] dist= vetcordist(); // cria um vetor de distância
         dist[posvertice]=0; // a distância do vertice para ele mesmo é 0
         Queue<Integer>queue=verticesQueue(posvertice); // cria uma fila com todos os vertices coloca o vertice inicial no começo
-
+        if (!allpositiveedge()) {
+            System.out.println(" Error: Apresenta arestas negativas");
+            return  pred;
+        }
         while (!queue.isEmpty()){// caso a lista esteja vazia todos os vertices foi percorridos.
             int vertice=queue.remove();// remove o primeiro elemento da fila
             for (int i = 0; i < matriz[vertice].length; i++) {
                 // percorre as arestas de um grafo
-                if (matriz[vertice][i]!=-1 && dist[i]>dist[vertice]+matriz[vertice][i]){
+                if (matriz[vertice][i]!=-1 &&dist[i]>dist[vertice]+matriz[vertice][i]){
                     // verifica se a aresta existe e compara com vetor de distância e atualiza
                     dist[i]=dist[vertice]+matriz[vertice][i];
                     pred[i]=vertice;
                 }
             }
         }
+        System.out.print(" ");
         imprimirPredecessores(pred,pred.length-1);
         System.out.println();
         return  pred;

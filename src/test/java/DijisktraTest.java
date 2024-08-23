@@ -1,13 +1,9 @@
-package org.example;
+import org.implementacao.Grafos;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-public class Main {
-    static  Grafos grafos5verticesdfollward(){
-        Grafos grafos=new Grafos(6);
-        return  grafos;
-    }
-    static Grafos grafos5verticesdijisktra(){
+public class DijisktraTest {
+    static Grafos grafos5verticespositive(){
         // grafo com 5 arestas
         // representação do grafo:
         Grafos grafos=new Grafos(6);
@@ -44,18 +40,19 @@ public class Main {
 
         return  grafos;
     }
-    static Grafos grafos5verticesbellmanford(){
+
+    static Grafos grafos5verticesnegative(){
         // grafo com 5 arestas
         // representação do grafo:
         Grafos grafos=new Grafos(6);
 
         // ligação da aresta do vertice 0
-        grafos.insertedge(0,1,-4);
+        grafos.insertedge(0,1,4);
         grafos.insertedge(0,2,-2);
 
         //ligação das aresta  do vetices 1
         grafos.insertedge(1,0,4);
-        grafos.insertedge(1,2,-3);
+        grafos.insertedge(1,2,1);
         grafos.insertedge(1,3,5);
 
         // ligação da aresta do vertice 2
@@ -81,17 +78,20 @@ public class Main {
 
         return  grafos;
     }
+    @Test
+    void  dijisktrapostiveedge(){
+        // encontra o caminho minino com algortimo dijisktra com todas as arestas negativas
+        // testa  bellmanford dijisktra se retornam o mesmo caminho
+        Grafos grafos=grafos5verticespositive();
+        Assertions.assertArrayEquals(grafos.dijisktra(0),grafos.bellmanford(0));
+    }
 
-    public static void main(String[] args) {
-
-        Grafos grafos=grafos5verticesbellmanford();// cria o grafo para aplicar o algortimo de dijisktra
-        System.out.println("Resultado do caminho minimo de dijisktra\n");
-
-//        int [] pred=grafos.dijisktra(0);
-
-        System.out.println(" Resultado do caminho minimo de bellmanford\n");
-        int[] predbellmanford=grafos.bellmanford(0);
-
-
+    @Test
+    void  dijisktranegativeedge(){
+        // encontra o caminho minino com algortimo dijisktra com todas as arestas negativas
+        // testa  bellmanford dijisktra se retornam o mesmo caminho
+        Grafos grafos=grafos5verticesnegative();
+        int[] prednegative={-1,-1,-1,-1,-1,-1};
+        Assertions.assertArrayEquals(grafos.dijisktra(0),prednegative);
     }
 }
