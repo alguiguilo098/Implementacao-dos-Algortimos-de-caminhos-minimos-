@@ -3,6 +3,7 @@ package org.implementacao;
 public class FordFusken {
     static  Grafos grafos(){
         Grafos grafos=new Grafos(5);
+
         // ligação das arestas do vertice 0
         grafos.insertedge(0,1,3);
         grafos.insertedge(0,2,8);
@@ -26,10 +27,10 @@ public class FordFusken {
     }
 
     public static void main(String[] args) {
-        Grafos grafos=grafos();
+        Grafos grafos=grafos();// cria o grafo ford wall
         int[][] dist=grafos.floydwordshall();
-
-        for (int i[]:dist){
+        System.out.println("Distância do ford wall \n");
+        for (int[] i:dist){
             for (int j:i){
                 System.out.print(j + " ");
             }
