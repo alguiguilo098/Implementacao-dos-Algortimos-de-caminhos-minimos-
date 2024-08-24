@@ -5,7 +5,7 @@ import java.util.*;
  * Guilherme Almeida Lopes a2458802
  * github: alguiguilo098
  * Data de criação:20/07/2024
- * Data de atualização: 20/07/2024
+ * Data de atualização: 24/07/2024
  * */
 public class Grafos {
     int[][] matriz;
@@ -32,31 +32,38 @@ public class Grafos {
         }
     }
 
-    private int[][] matrixdist(){ // cria a matriz de custos de grafo
-        int [][]matrizcustos=new int[sizevertice][sizevertice];
-        for (int i = 0; i <matrizcustos.length; i++) {
-            for (int j = 0; j <matrizcustos[i].length ; j++) {
-                if (i==j){// inicaliza com zero a diagonal principal
-                    matrizcustos[i][j]=0;
-                }else{// inicializa o valor das arestas na posicao
-                    matrizcustos[i][j]=matrizcustos[i][j];
-                }
-            }
-        }
-        return matrizcustos;
-    }
-    private int[][] matrizpred(){// cria a matriz de pred
-        int[][] matrizpred=new int[sizevertice][sizevertice];
+    private int[][] matrixpred(){ // cria a matriz de custos de grafo
+        int [][]matrizpred=new int[sizevertice][sizevertice];
         for (int i = 0; i <matrizpred.length; i++) {
             for (int j = 0; j <matrizpred[i].length ; j++) {
-                if (i==j || matriz[i][j]==-1){// se vertice não existir inicializa o pred como inif
-                    matrizpred[i][j]=-1;
-                }else {// se a aresta existe então coloca o pred
+                if (i==j){// inicaliza com zero a diagonal principal
+                    matrizpred[i][j]=Integer.MAX_VALUE;
+                } else if (matriz[i][j]==-1) {
+                    matrizpred[i][j]=Integer.MAX_VALUE;
+                } else{// inicializa o valor das arestas na posicao
                     matrizpred[i][j]=i;
                 }
             }
         }
         return matrizpred;
+    }
+
+    private int[][] matrizdist(){// cria a matriz de pred
+        int[][] matrizdist=new int[sizevertice][sizevertice];
+        for (int i = 0; i <matrizdist.length; i++) {
+            for (int j = 0; j <matrizdist[i].length ; j++) {
+                if (i==j){// se vertice não existir inicializa o pred como inif
+                    matrizdist[i][j]=0;
+                }else if (matriz[i][j]==-1){
+                    matrizdist[i][j]=Integer.MAX_VALUE;
+                }
+                else {// se a aresta existe então coloca o pred
+                    matrizdist[i][j]=matriz[i][j];
+                }
+            }
+        }
+
+        return matrizdist;
     }
     private  int [] vectorpred(){// inicializa o vetor de pred -1
         int [] pred=new int[sizevertice];
@@ -179,26 +186,19 @@ public class Grafos {
 
     public  int[][] floydwordshall(){
 
-        int [][] pred=matrizpred(); // inicializa a  matriz de pred
-        int [][] dist=matrixdist(); // inicializa a matriz de custo
+        int [][] pred=matrixpred(); // inicializa a  matriz de pred
+        int [][] dist=matrizdist(); // inicializa a matriz de custo
+
         for (int k = 0; k < sizevertice; k++) {// vertice inicial
             for (int j = 0; j < sizevertice; j++) { // vertice final
                 for (int i=0;i<sizevertice;i++){// vertice intermediario
-                    if (dist[i][j]>dist[i][k]+dist[k][j]){// atualiza o novo caminho minimo
+                    if (dist[i][j]>dist[i][k]+dist[k][j] && dist[i][k]!=Integer.MAX_VALUE && dist[k][j]!=Integer.MAX_VALUE){// atualiza o novo caminho minimo
                         dist[i][j]=dist[i][k]+dist[k][j];
                         pred[i][j]=pred[k][j];
                     }
                 }
             }
         }
-
-        for (int[] i:dist){
-            for (int j:i) {
-                System.out.println(j +" ");
-            }
-            System.out.println();
-        }
-
         return  dist;
     }
 
