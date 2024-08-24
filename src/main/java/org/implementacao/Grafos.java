@@ -50,7 +50,7 @@ public class Grafos {
         for (int i = 0; i <matrizpred.length; i++) {
             for (int j = 0; j <matrizpred[i].length ; j++) {
                 if (i==j || matriz[i][j]==-1){// se vertice não existir inicializa o pred como inif
-                    matrizpred[i][j]=Integer.MAX_VALUE;
+                    matrizpred[i][j]=-1;
                 }else {// se a aresta existe então coloca o pred
                     matrizpred[i][j]=i;
                 }
@@ -82,7 +82,7 @@ public class Grafos {
         }
         return true;
     }
-    void imprimirPredecessores(int[] vetor,int destino) {// imprima a o vetor de predecessores
+    private void imprimirPredecessores(int[] vetor,int destino) {// imprima a o vetor de predecessores
         ArrayList<Integer> caminho = new ArrayList<>();
 
         // Reconstroi o caminho mínimo do destino até a origem
@@ -103,9 +103,9 @@ public class Grafos {
         System.out.println();
     }
     public int[] bellmanford(int pos){
-        int []pred=vectorpred(); // inicializa o vetor de predecessores
-        int [] dist=vetcordist(); //
-        dist[pos]=0;
+        int []pred=vectorpred(); // inicializa o vetor de predecessores com -1
+        int [] dist=vetcordist(); // cria um vetir de distancias que é igual a inf
+        dist[pos]=0; // inicializa em zero a posicao do vetor
 
         for (int k = 0; k < getSizevertice()-1; k++) {// percorre todas os vertices  do grafos
             for (int j = 0; j <getSizevertice(); j++) {
@@ -132,6 +132,8 @@ public class Grafos {
         int[] prednegative_1={-1,-1,-1,-1,-1,-1};
         if(!Arrays.equals(pred,prednegative_1)){
             imprimirPredecessores(pred,pred.length-1);
+        }else{
+            System.out.println("Erro apresenta ciclo negativo este grafo");
         }
 
         return pred;
@@ -176,6 +178,7 @@ public class Grafos {
     }
 
     public  int[][] floydwordshall(){
+
         int [][] pred=matrizpred(); // inicializa a  matriz de pred
         int [][] dist=matrixdist(); // inicializa a matriz de custo
         for (int k = 0; k < sizevertice; k++) {// vertice inicial
@@ -188,6 +191,14 @@ public class Grafos {
                 }
             }
         }
+
+        for (int[] i:dist){
+            for (int j:i) {
+                System.out.println(j +" ");
+            }
+            System.out.println();
+        }
+
         return  dist;
     }
 
