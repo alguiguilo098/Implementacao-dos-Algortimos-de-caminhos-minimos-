@@ -22,8 +22,65 @@ O algoritmo de Bellman-Ford é capaz de lidar com grafos que possuem arestas com
 
 **Complexidade:** O(V * E).
 
+### Como Executar
+Executando o Arquivo Principal (Main.java)
+
+Navegue até a pasta do projeto.
+
+  Compile o arquivo Main.java e as classes necessárias:
+    bash
+    Copy
+
+    javac src/*.java src/dijkstra/*.java src/bellmanford/*.java src/floydwarshall/*.java
+
+    Execute o arquivo Main.java:
+    bash
+    Copy
+
+    java -cp src Main
+
+    Isso executará o código de exemplo contido no arquivo Main.java, que demonstra o uso dos algoritmos implementados.
+
 ### 3. Floyd-Warshall
 
 O algoritmo de Floyd-Warshall calcula os caminhos mínimos entre **todos os pares de vértices** em um grafo, podendo lidar com arestas de peso negativo (mas sem ciclos negativos).
 
 **Complexidade:** O(V³).
+
+# Como Executar
+
+### Executando o Arquivo Principal (`Main.java`)
+
+1. Navegue até a pasta do projeto.
+2. Compile o arquivo `Main.java` e as classes necessárias:
+
+   ```bash
+   javac src/*.java src/Grafos.java
+   ```
+
+3. Execute o arquivo `Main.java`:
+
+   ```bash
+   java -cp src Main
+   ```
+
+   Isso executará o código de exemplo contido no arquivo `Main.java`, que demonstra o uso dos algoritmos implementados.
+
+---
+
+### Executando os Testes
+
+1. Navegue até a pasta do projeto.
+2. Compile os testes:
+
+   ```bash
+   javac -cp . test/*.java
+   ```
+   
+3. Execute os testes usando o JUnit:
+
+   ```bash
+   java -cp .:junit-x.y.z.jar org.junit.runner.JUnitCore BellmanFordTest 
+   ```
+
+   Substitua `junit-x.y.z.jar` pelo caminho correto do arquivo JAR do JUnit.
