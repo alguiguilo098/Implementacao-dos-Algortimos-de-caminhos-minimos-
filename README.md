@@ -47,20 +47,3 @@ O algoritmo de Floyd-Warshall calcula os caminhos mínimos entre **todos os pare
    ```
 
    Isso executará o código de exemplo contido no arquivo `Main.java`, que demonstra o uso dos algoritmos implementados.
-
-### Executando os Testes
-
-1. Navegue até a pasta do projeto.
-2. Compile os testes:
-
-   ```bash
-   javac -cp . test/*.java
-   ```
-   
-3. Execute os testes usando o JUnit:
-
-   ```bash
-   java -cp .:junit-x.y.z.jar org.junit.runner.JUnitCore BellmanFordTest 
-   ```
-
-   Substitua `junit-x.y.z.jar` pelo caminho correto do arquivo JAR do JUnit.
