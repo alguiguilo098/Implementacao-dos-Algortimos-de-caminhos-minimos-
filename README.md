@@ -22,6 +22,12 @@ O algoritmo de Bellman-Ford é capaz de lidar com grafos que possuem arestas com
 
 **Complexidade:** O(V * E).
 
+### 3. Floyd-Warshall
+
+O algoritmo de Floyd-Warshall calcula os caminhos mínimos entre **todos os pares de vértices** em um grafo, podendo lidar com arestas de peso negativo (mas sem ciclos negativos).
+
+**Complexidade:** O(V³).
+
 ### Como Executar
 Executando o Arquivo Principal (Main.java)
 
@@ -31,42 +37,15 @@ Navegue até a pasta do projeto.
     bash
     Copy
 
-    javac src/*.java src/dijkstra/*.java src/bellmanford/*.java src/floydwarshall/*.java
+    javac Main.java Grafos.java
 
     Execute o arquivo Main.java:
     bash
     Copy
 
-    java -cp src Main
+    java Main
 
     Isso executará o código de exemplo contido no arquivo Main.java, que demonstra o uso dos algoritmos implementados.
-
-### 3. Floyd-Warshall
-
-O algoritmo de Floyd-Warshall calcula os caminhos mínimos entre **todos os pares de vértices** em um grafo, podendo lidar com arestas de peso negativo (mas sem ciclos negativos).
-
-**Complexidade:** O(V³).
-
-# Como Executar
-
-### Executando o Arquivo Principal (`Main.java`)
-
-1. Navegue até a pasta do projeto.
-2. Compile o arquivo `Main.java` e as classes necessárias:
-
-   ```bash
-   javac src/*.java src/Grafos.java
-   ```
-
-3. Execute o arquivo `Main.java`:
-
-   ```bash
-   java -cp src Main
-   ```
-
-   Isso executará o código de exemplo contido no arquivo `Main.java`, que demonstra o uso dos algoritmos implementados.
-
----
 
 ### Executando os Testes
 
