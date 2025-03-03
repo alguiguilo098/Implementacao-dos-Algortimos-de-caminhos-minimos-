@@ -28,24 +28,25 @@ O algoritmo de Floyd-Warshall calcula os caminhos mínimos entre **todos os pare
 
 **Complexidade:** O(V³).
 
-### Como Executar
-Executando o Arquivo Principal (Main.java)
+# Como Executar
 
-Navegue até a pasta do projeto.
+## Executando o Arquivo Principal (`Main.java`)
 
-  Compile o arquivo Main.java e as classes necessárias:
-    bash
-    Copy
+1. Navegue até a pasta do projeto.
 
-    javac Main.java Grafos.java
+2. Compile o arquivo `Main.java` e as classes necessárias:
 
-    Execute o arquivo Main.java:
-    bash
-    Copy
+   ```bash
+   javac Main.java Grafos.java
+   ```
 
-    java Main
+3. Execute o arquivo `Main.java`:
 
-    Isso executará o código de exemplo contido no arquivo Main.java, que demonstra o uso dos algoritmos implementados.
+   ```bash
+   java Main
+   ```
+
+   Isso executará o código de exemplo contido no arquivo `Main.java`, que demonstra o uso dos algoritmos implementados.
 
 ### Executando os Testes
 
